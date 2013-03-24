@@ -1,0 +1,36 @@
+// 
+//Json Object => using JS Lib => JS object -> Java Objs
+//Use a JSON String and create a JS object using a JS library and convert it into a Java Object
+// 	
+// Json Object => Java Lib -> Java Objs
+// Use a JSON String and create a Java object using a Java library
+//
+// JSON-js library: https://github.com/douglascrockford/JSON-js
+// JSON-java library: https://github.com/douglascrockford/JSON-java
+
+load("JSON_to_JS_and_Java.jjs ");
+
+
+// Simple benchmarking function:
+// maxRuntime - run for at least this number of ms
+// fn - function to benchmark
+var benchmark = function(maxRuntime, fn) {
+    // Run function once to warm up
+    for(var i=0; i< 1000; i++) {
+        fn();
+    }
+    var startTime = (new Date()) * 1;
+    var totalTime;
+    var runs = 0;
+    // Loop until maxRuntime is exceeded
+    do {
+        fn();
+        runs++;
+        totalTime = (new Date()) - startTime;
+    } while(totalTime < maxRuntime);
+    print("Time per execution: "+(totalTime / runs)+"ms");
+};
+
+benchmark(1000, function() {
+    mainJsMethod();	
+});
