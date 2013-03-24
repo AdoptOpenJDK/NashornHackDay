@@ -160,5 +160,3 @@ Body.sun = function() {
     return p;
 };
 
-
-NBody();
