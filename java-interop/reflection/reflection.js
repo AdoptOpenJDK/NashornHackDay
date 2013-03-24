@@ -46,16 +46,15 @@ function describe2(typeName) {
 	var mname = m.getName();
 	if (typeof ctx.types[typeName][mname] === "undefined") {
 	    ctx.types[typeName][mname] = 0;
-	} else {
-	    ctx.types[typeName][mname]++;
 	}
+	ctx.types[typeName][mname]++;
     }
 
     return ctx.types[typeName];
 }
 
 
-//describe("java.lang.String");
+//describe("java.lang.String"); 
 
 describe("java.lang.Object");
 
