@@ -1,0 +1,83 @@
+//!/usr/bin/jjs
+// 
+//Json Object => using JS Lib => JS object -> Java Objs
+//Use a JSON String and create a JS object using a JS library and convert it into a Java Object
+// 	
+// Json Object => Java Lib -> Java Objs
+// Use a JSON String and create a Java object using a Java library
+//
+// JSON-js library: https://github.com/douglascrockford/JSON-js
+// JSON-java library: https://github.com/douglascrockford/JSON-java
+
+load("JSON-js/json.js");
+var JSONFromJava = Java.type("org.json.JSONObject");
+var javaDomain = new JavaImporter(java.io, java.lang, java.util, java.awt, java.awt.image, javax.imageio);
+
+var JSONString = "{ \"name\":\"mkyong.com\", \"messages\":[\"msg 1\",\"msg 2\",\"msg 3\"] }";
+var JSONObjectUsingJavaScript;
+var On = 1, Off = 0;
+var shouldShowMessages=On;
+var shouldShowDebugMessages=Off;
+
+function createJSON_Object_From_String_using_JS() {
+	showDebugMessage("Before assigning JSONString...");
+	showMessage("Here's a JSON String");
+	showMessage("JSONString: " + JSONString);
+
+	JSONObjectUsingJavaScript = JSONString.parseJSON()
+}
+
+function displayJSON_Object() {
+	showDebugMessage("Before creating JSONObjectUsingJavaScript...using <String object>.parseJSON()");
+	showDebugMessage("Displaying contents of JSON Object using the <JSON Object>.toJSONString()");
+	showMessage("JSONObjectUsingJavaScript: " + JSONObjectUsingJavaScript.toJSONString());
+}
+
+// Report to debug message
+var showDebugMessage = function(message) {
+	if(!shouldShowDebugMessages) return;
+
+    showMessage(message, "[debug]  ");
+}
+
+// Report to stdout
+var showMessage = function(message, msgPrefix) {
+	if(!shouldShowMessages) return;
+
+	if (msgPrefix == undefined) {
+	   msgPrefix = "[runtime]";
+	} 
+    java.lang.System.out.println(msgPrefix + " " + message);
+}
+
+function mainJsMethod() {
+	showMessage("Create JSON Object => using Js Lib => Js object -> Java Objs => using Java library");
+	showMessage("==================================================================================");
+	showMessage("");
+
+
+	showMessage("Create JSON Object => using Js Lib (which is a Java object living in Nashorn)");
+	showMessage("=============================================================================");
+	showMessage("");
+	createJSON_Object_From_String_using_JS();
+	displayJSON_Object()
+	showDebugMessage("...End of JSON Object => using Js Lib.");
+
+	showMessage("");
+	showMessage("Create JSON Object => Java JSON object using a Java library");
+	showMessage("===============================================================");
+	showMessage("");
+
+	showDebugMessage("before new JSONFromJava()");
+	jsonObjectFromJava = new JSONFromJava();
+	jsonObjectFromJava.put("name", "some name");
+	jsonObjectFromJava.put("age", new javaDomain.Integer(100));
+	showMessage(jsonObjectFromJava);
+	showDebugMessage("after jsonObjectFromJava print.");
+
+	showDebugMessage("...End of Js JSON Object => Java JSON object using a Java library.");
+	showMessage("===============================================================");
+	showMessage("");	
+}
+
+ mainJsMethod();
