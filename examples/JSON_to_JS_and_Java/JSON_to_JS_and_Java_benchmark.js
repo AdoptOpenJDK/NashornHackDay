@@ -8,7 +8,7 @@
 // JSON-js library: https://github.com/douglascrockford/JSON-js
 // JSON-java library: https://github.com/douglascrockford/JSON-java
 
-load("JSON_to_JS_and_Java.jjs ");
+load("JSON_to_JS_and_Java.js");
 
 
 // Simple benchmarking function:
