@@ -24,4 +24,4 @@ or
     $ java -cp JSON-java/JSON.jar:<location to nashorn repo>/nashorn/dist/nashorn.jar jdk.nashorn.tools.Shell JSON_to_JS_and_Java_benchmark.js
 
 
-Note: JS in this context means javascript on the Nashorn platform.
+<b>Note: JS in this context means javascript on the <i>Nashorn</i> platform.</b>
