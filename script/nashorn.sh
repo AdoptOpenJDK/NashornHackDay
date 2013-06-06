@@ -1,3 +1,3 @@
  #!/bin/sh
 
- $JAVA8_HOME/bin/jjs $HOME/sources/nashorn-hackday/NashornHackDay/lib/hackday/bootstrap.js $1
+ $JAVA8_HOME/bin/jrunscript $HOME/sources/nashorn-hackday/NashornHackDay/lib/hackday/bootstrap.js $1
